@@ -1,0 +1,22 @@
+{
+  "name": "@mitosis-org/protocol-dapp-template",
+  "packageManager": "yarn@4.9.0",
+  "scripts": {
+    "coverage": "$PWD/tools/coverage.sh",
+    "lint": "forge fmt && yarn sort-imports",
+    "sort-imports": "tsx ./tools/sort-imports.ts -i './{script,src,test}/**/*.sol'",
+    "sort-imports:check": "tsx ./tools/sort-imports.ts -i './{script,src,test}/**/*.sol' -c"
+  },
+  "dependencies": {
+    "chalk": "^5.4.1",
+    "commander": "^13.1.0",
+    "glob": "^11.0.1",
+    "toml": "^3.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.14.0",
+    "solc": "0.8.29",
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.3"
+  }
+}

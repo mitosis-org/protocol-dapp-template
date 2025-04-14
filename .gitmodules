@@ -1,0 +1,11 @@
+[submodule ".cursor/rules/shared-rules"]
+	path = .cursor/rules/shared-rules
+	url = https://github.com/mitosis-org/shared-rules
+[submodule "dependencies/@stub"]
+	path = dependencies/@stub
+	url = https://github.com/mitosis-org/stub
+	branch = clean
+[submodule "dependencies/@protocol"]
+	path = dependencies/@protocol
+	url = https://github.com/mitosis-org/protocol
+	branch = clean
