@@ -22,8 +22,8 @@ integrity = "e9ecdc364d152157431e5df5aa041ffddbe9bb1c1ad81634b1e72df9e23814e8"
 [[dependencies]]
 name = "protocol"
 version = "0.2.0-alpha"
-git = "git@github.com:mitosis-org/protocol"
-rev = "11f153e6b89b98cb885e336edeee9f59d624d4ec"
+git = "https://github.com/mitosis-org/protocol"
+rev = "a2809106ebd19e5d136d55d1b3b940d4911a15de"
 
 [[dependencies]]
 name = "solady"
@@ -35,5 +35,5 @@ integrity = "e40e7781170e43fed51b973bc3c25287a0852d0ed6053a461ac391c7601ae6dd"
 [[dependencies]]
 name = "stub"
 version = "0.1.0"
-git = "git@github.com:mitosis-org/stub"
+git = "https://github.com/mitosis-org/stub"
 rev = "96c376e279bd96461f3355f490a24e3e82eca76d"

@@ -40,7 +40,7 @@ remappings_location = "config"
 "@openzeppelin-contracts" = "5.2.0"
 forge-std = "1.9.6"
 solady = "0.1.14"
-protocol = { version = "0.2.0-alpha", git = "git@github.com:mitosis-org/protocol", branch = "clean" }
-stub = { version = "0.1.0", git = "git@github.com:mitosis-org/stub", branch = "clean" }
+protocol = { version = "0.2.0-alpha", git = "https://github.com/mitosis-org/protocol", branch = "clean" }
+stub = { version = "0.1.0", git = "https://github.com/mitosis-org/stub", branch = "clean" }
 
 # See more config options https://github.com/foundry-rs/foundry/blob/master/crates/config/README.md#all-options
