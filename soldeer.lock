@@ -20,8 +20,20 @@ checksum = "55f341818321b3f925161a72fd0dcd62e4a0a4b66785a7a932bf2bfaf96fb9d1"
 integrity = "e9ecdc364d152157431e5df5aa041ffddbe9bb1c1ad81634b1e72df9e23814e8"
 
 [[dependencies]]
+name = "protocol"
+version = "0.2.0-alpha"
+git = "git@github.com:mitosis-org/protocol"
+rev = "11f153e6b89b98cb885e336edeee9f59d624d4ec"
+
+[[dependencies]]
 name = "solady"
 version = "0.1.14"
 url = "https://soldeer-revisions.s3.amazonaws.com/solady/0_1_14_03-04-2025_08:02:53_solady.zip"
 checksum = "82089b7c005404399d73f538545a795c5e24ec38009793ccd008000f1d66eb8b"
 integrity = "e40e7781170e43fed51b973bc3c25287a0852d0ed6053a461ac391c7601ae6dd"
+
+[[dependencies]]
+name = "stub"
+version = "0.1.0"
+git = "git@github.com:mitosis-org/stub"
+rev = "96c376e279bd96461f3355f490a24e3e82eca76d"
