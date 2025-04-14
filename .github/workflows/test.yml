@@ -43,7 +43,9 @@ jobs:
 
       - name: Run Soldeer install
         run: |
-          forge soldeer install
+          git config --global credential.https://github.com.username git
+          git config --global url."https://${{ secrets.GH_REPO_READER }}@github.com/".insteadOf "https://github.com/"
+          forge soldeer install -d
 
       - name: Show Forge version
         run: |
