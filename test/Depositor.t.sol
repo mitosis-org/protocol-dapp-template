@@ -9,9 +9,9 @@ import { Stub } from '@stub/Stub.sol';
 import { IERC20 } from '@oz/interfaces/IERC20.sol';
 import { IERC2612 } from '@oz/interfaces/IERC2612.sol';
 
-import { IMitosisVault } from '@protocol/interfaces/branch/IMitosisVault.sol';
-import { IMitosisVaultEOL } from '@protocol/interfaces/branch/IMitosisVaultEOL.sol';
-import { IMitosisVaultMatrix } from '@protocol/interfaces/branch/IMitosisVaultMatrix.sol';
+import { IMitosisVault } from '@mito-mainnet/interfaces/branch/IMitosisVault.sol';
+import { IMitosisVaultEOL } from '@mito-mainnet/interfaces/branch/IMitosisVaultEOL.sol';
+import { IMitosisVaultMatrix } from '@mito-mainnet/interfaces/branch/IMitosisVaultMatrix.sol';
 
 import { WETH } from '@solady/tokens/WETH.sol';
 

@@ -1,9 +1,9 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.28;
 
-import { IMitosisVault } from '@protocol/interfaces/branch/IMitosisVault.sol';
-import { IMitosisVaultEOL } from '@protocol/interfaces/branch/IMitosisVaultEOL.sol';
-import { IMitosisVaultMatrix } from '@protocol/interfaces/branch/IMitosisVaultMatrix.sol';
+import { IMitosisVault } from '@mito-mainnet/interfaces/branch/IMitosisVault.sol';
+import { IMitosisVaultEOL } from '@mito-mainnet/interfaces/branch/IMitosisVaultEOL.sol';
+import { IMitosisVaultMatrix } from '@mito-mainnet/interfaces/branch/IMitosisVaultMatrix.sol';
 
 import { IStubInspector } from '@stub/interface/IStubInspector.sol';
 import { IStubManager } from '@stub/interface/IStubManager.sol';

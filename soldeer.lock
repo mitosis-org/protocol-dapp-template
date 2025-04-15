@@ -20,7 +20,13 @@ checksum = "55f341818321b3f925161a72fd0dcd62e4a0a4b66785a7a932bf2bfaf96fb9d1"
 integrity = "e9ecdc364d152157431e5df5aa041ffddbe9bb1c1ad81634b1e72df9e23814e8"
 
 [[dependencies]]
-name = "protocol"
+name = "mito-expedition"
+version = "0.0.3"
+git = "https://github.com/mitosis-org/evm"
+rev = "58be8f12a7d5ef8ce964d80ce7480e27bf01730f"
+
+[[dependencies]]
+name = "mito-mainnet"
 version = "0.2.0-alpha"
 git = "https://github.com/mitosis-org/protocol"
 rev = "a2809106ebd19e5d136d55d1b3b940d4911a15de"
