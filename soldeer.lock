@@ -23,13 +23,19 @@ integrity = "e9ecdc364d152157431e5df5aa041ffddbe9bb1c1ad81634b1e72df9e23814e8"
 name = "mito-expedition"
 version = "0.0.3"
 git = "https://github.com/mitosis-org/evm"
-rev = "58be8f12a7d5ef8ce964d80ce7480e27bf01730f"
+rev = "af887a15170d78704890483ab704d77774f948b6"
 
 [[dependencies]]
 name = "mito-mainnet"
 version = "0.2.0-alpha"
 git = "https://github.com/mitosis-org/protocol"
-rev = "a2809106ebd19e5d136d55d1b3b940d4911a15de"
+rev = "76257a68f0773e581b422ab6973a87c8d67db6c6"
+
+[[dependencies]]
+name = "mito-utils"
+version = "0.1.0"
+git = "https://github.com/mitosis-org/protocol-utils"
+rev = "d11e49548b658fcd9686915e88365846d43daa95"
 
 [[dependencies]]
 name = "solady"
