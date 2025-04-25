@@ -1,5 +1,0 @@
-!dependencies
-dependencies/**/*.json
-dependencies/**/*.js
-dependencies/**/*.ts
-!dependencies/**/*.sol
