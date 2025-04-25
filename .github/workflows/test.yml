@@ -2,10 +2,14 @@ name: CI
 
 on:
   push:
+    branches:
+      - main
   pull_request:
-  workflow_dispatch:
+    branches:
+      - main
 
 env:
+  CI: true
   FOUNDRY_PROFILE: ci
 
 jobs:
@@ -13,24 +17,17 @@ jobs:
     strategy:
       fail-fast: true
 
-    name: Foundry project
-    runs-on: ubuntu-latest
+    name: test
+    runs-on: arc-runner-set
+    container: node:20
+
     steps:
       - uses: actions/checkout@v4
         with:
           token: ${{ secrets.GH_REPO_READER }}
           submodules: recursive
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-
-      - name: Enable Corepack
-        run: corepack enable
-
-      - name: Setup Yarn
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: yarn
@@ -51,6 +48,11 @@ jobs:
         run: |
           forge --version
 
+      - name: Run linter checks
+        run: |
+          yarn lint:check
+        id: lint
+
       - name: Run Forge build
         run: |
           forge build
@@ -60,3 +62,16 @@ jobs:
         run: |
           forge test -vvv
         id: test
+
+      - name: Run Forge coverage
+        run: |
+          apt-get update
+          apt-get -y install lcov
+          yarn coverage
+        id: coverage
+
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          slug: ${{ github.repository }}

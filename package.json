@@ -4,6 +4,7 @@
   "scripts": {
     "coverage": "$PWD/tools/coverage.sh",
     "lint": "forge fmt && yarn sort-imports",
+    "lint:check": "forge fmt --check && yarn sort-imports:check",
     "sort-imports": "tsx ./tools/sort-imports.ts -i './{script,src,test}/**/*.sol'",
     "sort-imports:check": "tsx ./tools/sort-imports.ts -i './{script,src,test}/**/*.sol' -c"
   },
