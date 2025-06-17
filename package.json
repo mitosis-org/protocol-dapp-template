@@ -9,14 +9,14 @@
     "sort-imports:check": "tsx ./tools/sort-imports.ts -i './{script,src,test}/**/*.sol' -c"
   },
   "dependencies": {
-    "@hyperlane-xyz/core": "^7.0.0",
+    "@hyperlane-xyz/core": "8.0.0",
     "chalk": "^5.4.1",
-    "commander": "^13.1.0",
+    "commander": "14.0.0",
     "glob": "^11.0.1",
     "toml": "^3.0.0"
   },
   "devDependencies": {
-    "@types/node": "^22.14.0",
+    "@types/node": "24.0.3",
     "solc": "0.8.29",
     "tsx": "^4.19.3",
     "typescript": "^5.8.3"
