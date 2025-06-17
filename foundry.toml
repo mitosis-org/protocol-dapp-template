@@ -1,50 +1,50 @@
 [profile.default]
-src = "src"
-out = "out"
-libs = ["lib", "dependencies", "node_modules"]
-solc = "0.8.29"
 evm_version = "prague"
+libs = ["dependencies", "lib", "node_modules"]
+out = "out"
 remappings = [
   # for local
-  "@std/=dependencies/forge-std-1.9.6/src/",
+  "@hpl/=node_modules/@hyperlane-xyz/core/contracts",
+  "@mito-expedition/=dependencies/mito-expedition-0.0.3/src",
+  "@mito-mainnet/=dependencies/mito-mainnet-0.2.0-alpha/src",
+  "@mito-utils/=dependencies/mito-utils-0.1.0/src",
+  "@openzeppelin-contracts-5.2.0/=dependencies/@openzeppelin-contracts-5.2.0/",
+  "@openzeppelin-contracts-upgradeable-5.2.0/=dependencies/@openzeppelin-contracts-upgradeable-5.2.0/",
   "@oz/=dependencies/@openzeppelin-contracts-5.2.0/",
   "@ozu/=dependencies/@openzeppelin-contracts-upgradeable-5.2.0/",
   "@solady/=dependencies/solady-0.1.14/src",
-  "@mito-utils/=dependencies/mito-utils-0.1.0/src",
-  "@mito-mainnet/=dependencies/mito-mainnet-0.2.0-alpha/src",
-  "@mito-expedition/=dependencies/mito-expedition-0.0.3/src",
-  "@hpl/=node_modules/@hyperlane-xyz/core/contracts",
+  "@std/=dependencies/forge-std-1.9.6/src/",
   "@stub/=dependencies/stub-0.1.0/src",
-  "@openzeppelin-contracts-5.2.0/=dependencies/@openzeppelin-contracts-5.2.0/",
-  "@openzeppelin-contracts-upgradeable-5.2.0/=dependencies/@openzeppelin-contracts-upgradeable-5.2.0/",
 
   # for dependencies
-  "@openzeppelin/contracts/=dependencies/@openzeppelin-contracts-5.2.0/",
   "@openzeppelin/contracts-upgradeable/=dependencies/@openzeppelin-contracts-upgradeable-5.2.0/",
+  "@openzeppelin/contracts/=dependencies/@openzeppelin-contracts-5.2.0/",
 
   # for context aware remappings
   "node_modules/@hyperlane-xyz/core:@openzeppelin=node_modules/@hyperlane-xyz/core/node_modules/@openzeppelin",
 ]
+solc = "0.8.29"
+src = "src"
 
 [fmt]
-line_length = 100
-tab_width = 2
 bracket_spacing = true
-quote_style = "single"
+line_length     = 100
+quote_style     = "single"
+tab_width       = 2
 
 [soldeer]
-remappings_generate = false
+remappings_generate   = false
+remappings_location   = "config"
 remappings_regenerate = false
-remappings_location = "config"
 
 [dependencies]
+"@openzeppelin-contracts"             = "5.2.0"
 "@openzeppelin-contracts-upgradeable" = "5.2.0"
-"@openzeppelin-contracts" = "5.2.0"
-forge-std = "1.9.6"
-solady = "0.1.14"
-stub = { version = "0.1.0", git = "https://github.com/mitosis-org/stub", branch = "clean" }
-mito-utils = { version = "0.1.0", git = "https://github.com/mitosis-org/protocol-utils", branch = "⭐️" }
-mito-mainnet = { version = "0.2.0-alpha", git = "https://github.com/mitosis-org/protocol", branch = "⭐️" }
-mito-expedition = { version = "0.0.3", git = "https://github.com/mitosis-org/evm", branch = "clean" }
+forge-std                             = "1.9.6"
+mito-expedition                       = { version = "0.0.3", git = "https://github.com/mitosis-org/evm", branch = "clean" }
+mito-mainnet                          = { version = "0.2.0-alpha", git = "https://github.com/mitosis-org/protocol", branch = "⭐️" }
+mito-utils                            = { version = "0.1.0", git = "https://github.com/mitosis-org/protocol-utils", branch = "⭐️" }
+solady                                = "0.1.14"
+stub                                  = { version = "0.1.0", git = "https://github.com/mitosis-org/stub", branch = "clean" }
 
 # See more config options https://github.com/foundry-rs/foundry/blob/master/crates/config/README.md#all-options
