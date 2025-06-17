@@ -43,8 +43,8 @@ remappings_location = "config"
 forge-std = "1.9.6"
 solady = "0.1.14"
 stub = { version = "0.1.0", git = "https://github.com/mitosis-org/stub", branch = "clean" }
-mito-utils = { version = "0.1.0", git = "https://github.com/mitosis-org/protocol-utils", branch = "clean" }
-mito-mainnet = { version = "0.2.0-alpha", git = "https://github.com/mitosis-org/protocol", branch = "clean" }
+mito-utils = { version = "0.1.0", git = "https://github.com/mitosis-org/protocol-utils", branch = "⭐️" }
+mito-mainnet = { version = "0.2.0-alpha", git = "https://github.com/mitosis-org/protocol", branch = "⭐️" }
 mito-expedition = { version = "0.0.3", git = "https://github.com/mitosis-org/evm", branch = "clean" }
 
 # See more config options https://github.com/foundry-rs/foundry/blob/master/crates/config/README.md#all-options
