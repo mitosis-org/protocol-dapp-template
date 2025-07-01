@@ -20,32 +20,20 @@ checksum = "55f341818321b3f925161a72fd0dcd62e4a0a4b66785a7a932bf2bfaf96fb9d1"
 integrity = "e9ecdc364d152157431e5df5aa041ffddbe9bb1c1ad81634b1e72df9e23814e8"
 
 [[dependencies]]
-name = "mito-expedition"
-version = "0.0.3"
-git = "https://github.com/mitosis-org/evm"
-rev = "700d77713addadec3cdffdd683bdb69d56fe2efc"
-
-[[dependencies]]
 name = "mito-mainnet"
 version = "0.2.0-alpha"
 git = "https://github.com/mitosis-org/protocol"
-rev = "dbca9dd40251c3ad57e71ac2d7bdeba5fcf22d1a"
-
-[[dependencies]]
-name = "mito-utils"
-version = "0.1.0"
-git = "https://github.com/mitosis-org/protocol-utils"
-rev = "542983786280b395d40edaf23268b05bbf6b2d8e"
+rev = "4ef58242c0e0bcb8714714db019e402ccdd93272"
 
 [[dependencies]]
 name = "solady"
-version = "0.1.14"
-url = "https://soldeer-revisions.s3.amazonaws.com/solady/0_1_14_03-04-2025_08:02:53_solady.zip"
-checksum = "82089b7c005404399d73f538545a795c5e24ec38009793ccd008000f1d66eb8b"
-integrity = "e40e7781170e43fed51b973bc3c25287a0852d0ed6053a461ac391c7601ae6dd"
+version = "0.1.21"
+url = "https://soldeer-revisions.s3.amazonaws.com/solady/0_1_21_26-06-2025_11:07:38_solady.zip"
+checksum = "bcd1c70c3746c0a3115e52025ab9197c9bd95077070ee9e3ab0238c0e94c37bc"
+integrity = "f0a129ed5ebac740e2121d30b707634bd688d5fa37f7b548495630d040584b73"
 
 [[dependencies]]
 name = "stub"
 version = "0.1.0"
 git = "https://github.com/mitosis-org/stub"
-rev = "96c376e279bd96461f3355f490a24e3e82eca76d"
+rev = "e572214c94bb2d2c38d02e4fa6a40eeac45d4673"

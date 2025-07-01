@@ -10,12 +10,7 @@ env:
 
 jobs:
   changes:
-    runs-on: arc-runner-set
-    container:
-      image: asia-northeast3-docker.pkg.dev/manythings-mitosis/docker-images/arc-runner-alpine
-      credentials:
-        username: _json_key
-        password: ${{ secrets.GOOGLE_CREDENTIAL }}
+    runs-on: ubuntu-latest
 
     # Set job outputs to values from filter step
     outputs:
@@ -41,17 +36,12 @@ jobs:
               - 'soldeer.lock'
               - '.gitignore'
 
-  clean-branch:
+  refine-branch:
     needs: changes
     if: ${{ needs.changes.outputs.contracts == 'true' }}
 
-    name: update clean branch
-    runs-on: arc-runner-set
-    container:
-      image: asia-northeast3-docker.pkg.dev/manythings-mitosis/docker-images/arc-runner-alpine
-      credentials:
-        username: _json_key
-        password: ${{ secrets.GOOGLE_CREDENTIAL }}
+    name: update refine branch
+    runs-on: ubuntu-latest
 
     permissions:
       contents: write
@@ -59,15 +49,23 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: clean
+          ref: ⭐️
 
       - name: run update
         run: |
           git config --global --add safe.directory /__w/${{ env.REPO_NAME }}/${{ env.REPO_NAME }}
           git fetch
+
+          # Remove existing files/directories to handle deletions properly
+          rm -rf src/
+          rm -f foundry.toml soldeer.lock .gitignore
+
+          # Checkout fresh versions from main
           git checkout origin/main src foundry.toml soldeer.lock .gitignore
+
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
-          git commit -m "cleaned $GITHUB_SHA"
+
+          git commit -m "refined $GITHUB_SHA"
           git push
