@@ -21,10 +21,10 @@ integrity = "e9ecdc364d152157431e5df5aa041ffddbe9bb1c1ad81634b1e72df9e23814e8"
 
 [[dependencies]]
 name = "mitosis"
-version = "1.0.0"
-url = "https://soldeer-revisions.s3.amazonaws.com/mitosis/1_0_0_20-08-2025_17:47:36_src.zip"
-checksum = "25d328933ca3c5bc4169cf9c06b0b6d0d6e895e1212932d206dfa6843b58dd81"
-integrity = "1705455929153139b3aa444d373a40bb8e7e56ae19327b3144cdd47c4fba0946"
+version = "1.0.1"
+url = "https://soldeer-revisions.s3.amazonaws.com/mitosis/1_0_1_21-08-2025_13:07:40_src.zip"
+checksum = "2508cd3c150781d035344fb042e1fbf6831ae92c7a10c4e85ef044a6596f2bd8"
+integrity = "81c69e06262226a3c363e98d4587e18fe4858b25a7e9a19b0120316c6adc2e62"
 
 [[dependencies]]
 name = "solady"
