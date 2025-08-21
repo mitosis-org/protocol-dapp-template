@@ -9,9 +9,8 @@ import { Stub } from '@stub/Stub.sol';
 import { IERC20 } from '@oz/interfaces/IERC20.sol';
 import { IERC2612 } from '@oz/interfaces/IERC2612.sol';
 
-import { IMitosisVault } from '@mito-mainnet/interfaces/branch/IMitosisVault.sol';
-import { IMitosisVaultEOL } from '@mito-mainnet/interfaces/branch/IMitosisVaultEOL.sol';
-import { IMitosisVaultMatrix } from '@mito-mainnet/interfaces/branch/IMitosisVaultMatrix.sol';
+import { IMitosisVault } from '@mitosis/interfaces/branch/IMitosisVault.sol';
+import { IMitosisVaultVLF } from '@mitosis/interfaces/branch/IMitosisVaultVLF.sol';
 
 import { WETH } from '@solady/tokens/WETH.sol';
 
@@ -52,13 +51,11 @@ contract DepositorTest is Test {
     vm.startPrank(owner);
     token.transfer(user, amount);
     depositor.setAllowance(IMitosisVault.deposit.selector, true);
-    depositor.setAllowance(IMitosisVaultEOL.depositWithSupplyEOL.selector, true);
-    depositor.setAllowance(IMitosisVaultMatrix.depositWithSupplyMatrix.selector, true);
+    depositor.setAllowance(IMitosisVaultVLF.depositWithSupplyVLF.selector, true);
     vm.stopPrank();
 
     vault.setRetDeposit(address(token), user, amount / 3);
-    vault.setRetDepositWithSupplyEOL(address(token), user, address(vault), amount / 3);
-    vault.setRetDepositWithSupplyMatrix(address(token), user, address(vault), amount / 3);
+    vault.setRetDepositWithSupplyVLF(address(token), user, address(vault), amount / 3);
 
     vm.startPrank(user);
 
@@ -71,14 +68,7 @@ contract DepositorTest is Test {
 
     {
       token.approve(address(depositor), amount / 3);
-      bytes memory data = _encodeDepositWithSupplyEOL(address(token), user, amount / 3);
-      bytes memory result = depositor.executeWith(amount / 3, data);
-      assertEq(result.length, 0, 'Return data should be empty');
-    }
-
-    {
-      token.approve(address(depositor), amount / 3);
-      bytes memory data = _encodeDepositWithSupplyMatrix(address(token), user, amount / 3);
+      bytes memory data = _encodeDepositWithSupplyVLF(address(token), user, amount / 3);
       bytes memory result = depositor.executeWith(amount / 3, data);
       assertEq(result.length, 0, 'Return data should be empty');
     }
@@ -86,8 +76,7 @@ contract DepositorTest is Test {
     vm.stopPrank();
 
     vault.assertDeposit(address(token), user, amount);
-    vault.assertDepositWithSupplyEOL(address(token), user, address(vault), amount);
-    vault.assertDepositWithSupplyMatrix(address(token), user, address(vault), amount);
+    vault.assertDepositWithSupplyVLF(address(token), user, address(vault), amount);
   }
 
   function _encodeDeposit(address token_, address user_, uint256 amount)
@@ -98,23 +87,13 @@ contract DepositorTest is Test {
     return abi.encodeCall(IMitosisVault.deposit, (address(token_), user_, amount));
   }
 
-  function _encodeDepositWithSupplyEOL(address token_, address user_, uint256 amount)
+  function _encodeDepositWithSupplyVLF(address token_, address user_, uint256 amount)
     internal
     view
     returns (bytes memory)
   {
     return abi.encodeCall(
-      IMitosisVaultEOL.depositWithSupplyEOL, (address(token_), user_, address(vault), amount)
-    );
-  }
-
-  function _encodeDepositWithSupplyMatrix(address token_, address user_, uint256 amount)
-    internal
-    view
-    returns (bytes memory)
-  {
-    return abi.encodeCall(
-      IMitosisVaultMatrix.depositWithSupplyMatrix, (address(token_), user_, address(vault), amount)
+      IMitosisVaultVLF.depositWithSupplyVLF, (address(token_), user_, address(vault), amount)
     );
   }
 }

@@ -1,14 +1,11 @@
 // SPDX-License-Identifier: Apache-2.0
 pragma solidity ^0.8.28;
 
-import { IMitosisVault } from '@mito-mainnet/interfaces/branch/IMitosisVault.sol';
-import { IMitosisVaultEOL } from '@mito-mainnet/interfaces/branch/IMitosisVaultEOL.sol';
-import { IMitosisVaultMatrix } from '@mito-mainnet/interfaces/branch/IMitosisVaultMatrix.sol';
+import { IMitosisVault } from '@mitosis/interfaces/branch/IMitosisVault.sol';
+import { IMitosisVaultVLF } from '@mitosis/interfaces/branch/IMitosisVaultVLF.sol';
 
 import { IStubInspector } from '@stub/interface/IStubInspector.sol';
 import { IStubManager } from '@stub/interface/IStubManager.sol';
-
-// Use remappings
 
 library LibStubMitosisVault {
   function _tom(address stub) private pure returns (IStubManager) {
@@ -30,37 +27,24 @@ library LibStubMitosisVault {
     _tom(stub).regF(IMitosisVault.withdraw.selector, true, 'withdraw');
     _tom(stub).regF(IMitosisVault.setEntrypoint.selector, true, 'setEntrypoint');
 
-    // Register IMitosisVaultMatrix view functions
-    _tom(stub).regF(IMitosisVaultMatrix.isMatrixInitialized.selector, false, 'isMatrixInitialized');
-    _tom(stub).regF(IMitosisVaultMatrix.availableMatrix.selector, false, 'availableMatrix');
-    _tom(stub).regF(
-      IMitosisVaultMatrix.matrixStrategyExecutor.selector, false, 'matrixStrategyExecutor'
-    );
+    // Register IMitosisVaultVLF view functions
+    _tom(stub).regF(IMitosisVaultVLF.isVLFInitialized.selector, false, 'isVLFInitialized');
+    _tom(stub).regF(IMitosisVaultVLF.availableVLF.selector, false, 'availableVLF');
+    _tom(stub).regF(IMitosisVaultVLF.vlfStrategyExecutor.selector, false, 'vlfStrategyExecutor');
 
-    // Register IMitosisVaultMatrix mutative functions
+    // Register IMitosisVaultVLF mutative functions
+    _tom(stub).regF(IMitosisVaultVLF.depositWithSupplyVLF.selector, true, 'depositWithSupplyVLF');
+    _tom(stub).regF(IMitosisVaultVLF.initializeVLF.selector, true, 'initializeVLF');
+    _tom(stub).regF(IMitosisVaultVLF.allocateVLF.selector, true, 'allocateVLF');
+    _tom(stub).regF(IMitosisVaultVLF.deallocateVLF.selector, true, 'deallocateVLF');
+    _tom(stub).regF(IMitosisVaultVLF.fetchVLF.selector, true, 'fetchVLF');
+    _tom(stub).regF(IMitosisVaultVLF.returnVLF.selector, true, 'returnVLF');
+    _tom(stub).regF(IMitosisVaultVLF.settleVLFYield.selector, true, 'settleVLFYield');
+    _tom(stub).regF(IMitosisVaultVLF.settleVLFLoss.selector, true, 'settleVLFLoss');
+    _tom(stub).regF(IMitosisVaultVLF.settleVLFExtraRewards.selector, true, 'settleVLFExtraRewards');
     _tom(stub).regF(
-      IMitosisVaultMatrix.depositWithSupplyMatrix.selector, true, 'depositWithSupplyMatrix'
+      IMitosisVaultVLF.setVLFStrategyExecutor.selector, true, 'setVLFStrategyExecutor'
     );
-    _tom(stub).regF(IMitosisVaultMatrix.initializeMatrix.selector, true, 'initializeMatrix');
-    _tom(stub).regF(IMitosisVaultMatrix.allocateMatrix.selector, true, 'allocateMatrix');
-    _tom(stub).regF(IMitosisVaultMatrix.deallocateMatrix.selector, true, 'deallocateMatrix');
-    _tom(stub).regF(IMitosisVaultMatrix.fetchMatrix.selector, true, 'fetchMatrix');
-    _tom(stub).regF(IMitosisVaultMatrix.returnMatrix.selector, true, 'returnMatrix');
-    _tom(stub).regF(IMitosisVaultMatrix.settleMatrixYield.selector, true, 'settleMatrixYield');
-    _tom(stub).regF(IMitosisVaultMatrix.settleMatrixLoss.selector, true, 'settleMatrixLoss');
-    _tom(stub).regF(
-      IMitosisVaultMatrix.settleMatrixExtraRewards.selector, true, 'settleMatrixExtraRewards'
-    );
-    _tom(stub).regF(
-      IMitosisVaultMatrix.setMatrixStrategyExecutor.selector, true, 'setMatrixStrategyExecutor'
-    );
-
-    // Register IMitosisVaultEOL view functions
-    _tom(stub).regF(IMitosisVaultEOL.isEOLInitialized.selector, false, 'isEOLInitialized');
-
-    // Register IMitosisVaultEOL mutative functions
-    _tom(stub).regF(IMitosisVaultEOL.depositWithSupplyEOL.selector, true, 'depositWithSupplyEOL');
-    _tom(stub).regF(IMitosisVaultEOL.initializeEOL.selector, true, 'initializeEOL');
   }
 
   // ================================================= VIEW FUNCTIONS ================================================= //
@@ -81,27 +65,32 @@ library LibStubMitosisVault {
     return stub;
   }
 
-  // ==================================== IMitosisVaultMatrix Specific =================================== //
+  // ====================================== IMitosisVaultVLF Specific ====================================== //
 
-  function setRetIsMatrixInitialized(address stub, address hubMatrixVault, bool isInitialized)
+  function setRetIsVLFInitialized(address stub, address hubVLFVault, bool isInitialized)
     internal
     returns (address)
   {
-    bytes memory data = abi.encodeCall(IMitosisVaultMatrix.isMatrixInitialized, (hubMatrixVault));
+    bytes memory data = abi.encodeCall(IMitosisVaultVLF.isVLFInitialized, (hubVLFVault));
     _tom(stub).setOk(data, abi.encode(isInitialized));
     return stub;
   }
 
-  // Add setRet... for availableMatrix, matrixStrategyExecutor if needed
-
-  // ====================================== IMitosisVaultEOL Specific ====================================== //
-
-  function setRetIsEOLInitialized(address stub, address hubEOLVault, bool isInitialized)
+  function setRetAvailableVLF(address stub, address hubVLFVault, uint256 available)
     internal
     returns (address)
   {
-    bytes memory data = abi.encodeCall(IMitosisVaultEOL.isEOLInitialized, (hubEOLVault));
-    _tom(stub).setOk(data, abi.encode(isInitialized));
+    bytes memory data = abi.encodeCall(IMitosisVaultVLF.availableVLF, (hubVLFVault));
+    _tom(stub).setOk(data, abi.encode(available));
+    return stub;
+  }
+
+  function setRetVLFStrategyExecutor(address stub, address hubVLFVault, address executor)
+    internal
+    returns (address)
+  {
+    bytes memory data = abi.encodeCall(IMitosisVaultVLF.vlfStrategyExecutor, (hubVLFVault));
+    _tom(stub).setOk(data, abi.encode(executor));
     return stub;
   }
 
@@ -142,73 +131,102 @@ library LibStubMitosisVault {
     return stub;
   }
 
-  // ==================================== IMitosisVaultMatrix Specific =================================== //
+  // ====================================== IMitosisVaultVLF Specific ====================================== //
 
-  function setRetInitializeMatrix(address stub, address hubMatrixVault, address asset)
+  function setRetInitializeVLF(address stub, address hubVLFVault, address asset)
     internal
     returns (address)
   {
-    bytes memory data =
-      abi.encodeCall(IMitosisVaultMatrix.initializeMatrix, (hubMatrixVault, asset));
+    bytes memory data = abi.encodeCall(IMitosisVaultVLF.initializeVLF, (hubVLFVault, asset));
     _tom(stub).setOk(data, abi.encode());
     return stub;
   }
 
-  function setRetDepositWithSupplyMatrix(
+  function setRetDepositWithSupplyVLF(
     address stub,
     address asset,
     address to,
-    address hubMatrixVault,
+    address hubVLFVault,
     uint256 amount
   ) internal returns (address) {
-    bytes memory data = abi.encodeCall(
-      IMitosisVaultMatrix.depositWithSupplyMatrix, (asset, to, hubMatrixVault, amount)
-    );
-    _tom(stub).setOk(data, abi.encode());
-    return stub;
-  }
-
-  function setRetFetchMatrix(address stub, address hubMatrixVault, uint256 amount)
-    internal
-    returns (address)
-  {
-    bytes memory data = abi.encodeCall(IMitosisVaultMatrix.fetchMatrix, (hubMatrixVault, amount));
-    _tom(stub).setOk(data, abi.encode());
-    return stub;
-  }
-
-  function setRetSettleMatrixYield(address stub, address hubMatrixVault, uint256 amount)
-    internal
-    returns (address)
-  {
     bytes memory data =
-      abi.encodeCall(IMitosisVaultMatrix.settleMatrixYield, (hubMatrixVault, amount));
+      abi.encodeCall(IMitosisVaultVLF.depositWithSupplyVLF, (asset, to, hubVLFVault, amount));
     _tom(stub).setOk(data, abi.encode());
     return stub;
   }
 
-  // Add other setRet... functions for Matrix mutative methods as needed
-
-  // ====================================== IMitosisVaultEOL Specific ====================================== //
-
-  function setRetInitializeEOL(address stub, address hubEOLVault, address asset)
+  function setRetAllocateVLF(address stub, address hubVLFVault, uint256 amount)
     internal
     returns (address)
   {
-    bytes memory data = abi.encodeCall(IMitosisVaultEOL.initializeEOL, (hubEOLVault, asset));
+    bytes memory data = abi.encodeCall(IMitosisVaultVLF.allocateVLF, (hubVLFVault, amount));
     _tom(stub).setOk(data, abi.encode());
     return stub;
   }
 
-  function setRetDepositWithSupplyEOL(
+  function setRetDeallocateVLF(address stub, address hubVLFVault, uint256 amount)
+    internal
+    returns (address)
+  {
+    bytes memory data = abi.encodeCall(IMitosisVaultVLF.deallocateVLF, (hubVLFVault, amount));
+    _tom(stub).setOk(data, abi.encode());
+    return stub;
+  }
+
+  function setRetFetchVLF(address stub, address hubVLFVault, uint256 amount)
+    internal
+    returns (address)
+  {
+    bytes memory data = abi.encodeCall(IMitosisVaultVLF.fetchVLF, (hubVLFVault, amount));
+    _tom(stub).setOk(data, abi.encode());
+    return stub;
+  }
+
+  function setRetReturnVLF(address stub, address hubVLFVault, uint256 amount)
+    internal
+    returns (address)
+  {
+    bytes memory data = abi.encodeCall(IMitosisVaultVLF.returnVLF, (hubVLFVault, amount));
+    _tom(stub).setOk(data, abi.encode());
+    return stub;
+  }
+
+  function setRetSettleVLFYield(address stub, address hubVLFVault, uint256 amount)
+    internal
+    returns (address)
+  {
+    bytes memory data = abi.encodeCall(IMitosisVaultVLF.settleVLFYield, (hubVLFVault, amount));
+    _tom(stub).setOk(data, abi.encode());
+    return stub;
+  }
+
+  function setRetSettleVLFLoss(address stub, address hubVLFVault, uint256 amount)
+    internal
+    returns (address)
+  {
+    bytes memory data = abi.encodeCall(IMitosisVaultVLF.settleVLFLoss, (hubVLFVault, amount));
+    _tom(stub).setOk(data, abi.encode());
+    return stub;
+  }
+
+  function setRetSettleVLFExtraRewards(
     address stub,
-    address asset,
-    address to,
-    address hubEOLVault,
+    address hubVLFVault,
+    address reward,
     uint256 amount
   ) internal returns (address) {
     bytes memory data =
-      abi.encodeCall(IMitosisVaultEOL.depositWithSupplyEOL, (asset, to, hubEOLVault, amount));
+      abi.encodeCall(IMitosisVaultVLF.settleVLFExtraRewards, (hubVLFVault, reward, amount));
+    _tom(stub).setOk(data, abi.encode());
+    return stub;
+  }
+
+  function setRetSetVLFStrategyExecutor(address stub, address hubVLFVault, address executor)
+    internal
+    returns (address)
+  {
+    bytes memory data =
+      abi.encodeCall(IMitosisVaultVLF.setVLFStrategyExecutor, (hubVLFVault, executor));
     _tom(stub).setOk(data, abi.encode());
     return stub;
   }
@@ -252,80 +270,111 @@ library LibStubMitosisVault {
     return stub;
   }
 
-  // ==================================== IMitosisVaultMatrix Specific =================================== //
+  // ====================================== IMitosisVaultVLF Specific ====================================== //
 
-  function assertInitializeMatrix(address stub, address hubMatrixVault, address asset)
+  function assertInitializeVLF(address stub, address hubVLFVault, address asset)
     internal
     view
     returns (address)
   {
-    bytes memory data =
-      abi.encodeCall(IMitosisVaultMatrix.initializeMatrix, (hubMatrixVault, asset));
+    bytes memory data = abi.encodeCall(IMitosisVaultVLF.initializeVLF, (hubVLFVault, asset));
     _toi(stub).expectOk(data);
     return stub;
   }
 
-  function assertDepositWithSupplyMatrix(
+  function assertDepositWithSupplyVLF(
     address stub,
     address asset,
     address to,
-    address hubMatrixVault,
+    address hubVLFVault,
     uint256 amount
   ) internal view returns (address) {
-    bytes memory data = abi.encodeCall(
-      IMitosisVaultMatrix.depositWithSupplyMatrix, (asset, to, hubMatrixVault, amount)
-    );
-    _toi(stub).expectOk(data);
-    return stub;
-  }
-
-  function assertFetchMatrix(address stub, address hubMatrixVault, uint256 amount)
-    internal
-    view
-    returns (address)
-  {
-    bytes memory data = abi.encodeCall(IMitosisVaultMatrix.fetchMatrix, (hubMatrixVault, amount));
-    _toi(stub).expectOk(data);
-    return stub;
-  }
-
-  function assertSettleMatrixYield(address stub, address hubMatrixVault, uint256 amount)
-    internal
-    view
-    returns (address)
-  {
     bytes memory data =
-      abi.encodeCall(IMitosisVaultMatrix.settleMatrixYield, (hubMatrixVault, amount));
+      abi.encodeCall(IMitosisVaultVLF.depositWithSupplyVLF, (asset, to, hubVLFVault, amount));
     _toi(stub).expectOk(data);
     return stub;
   }
 
-  // Add other assert... functions for Matrix mutative methods as needed
-
-  // ====================================== IMitosisVaultEOL Specific ====================================== //
-
-  function assertInitializeEOL(address stub, address hubEOLVault, address asset)
+  function assertAllocateVLF(address stub, address hubVLFVault, uint256 amount)
     internal
     view
     returns (address)
   {
-    bytes memory data = abi.encodeCall(IMitosisVaultEOL.initializeEOL, (hubEOLVault, asset));
+    bytes memory data = abi.encodeCall(IMitosisVaultVLF.allocateVLF, (hubVLFVault, amount));
     _toi(stub).expectOk(data);
     return stub;
   }
 
-  function assertDepositWithSupplyEOL(
+  function assertDeallocateVLF(address stub, address hubVLFVault, uint256 amount)
+    internal
+    view
+    returns (address)
+  {
+    bytes memory data = abi.encodeCall(IMitosisVaultVLF.deallocateVLF, (hubVLFVault, amount));
+    _toi(stub).expectOk(data);
+    return stub;
+  }
+
+  function assertFetchVLF(address stub, address hubVLFVault, uint256 amount)
+    internal
+    view
+    returns (address)
+  {
+    bytes memory data = abi.encodeCall(IMitosisVaultVLF.fetchVLF, (hubVLFVault, amount));
+    _toi(stub).expectOk(data);
+    return stub;
+  }
+
+  function assertReturnVLF(address stub, address hubVLFVault, uint256 amount)
+    internal
+    view
+    returns (address)
+  {
+    bytes memory data = abi.encodeCall(IMitosisVaultVLF.returnVLF, (hubVLFVault, amount));
+    _toi(stub).expectOk(data);
+    return stub;
+  }
+
+  function assertSettleVLFYield(address stub, address hubVLFVault, uint256 amount)
+    internal
+    view
+    returns (address)
+  {
+    bytes memory data = abi.encodeCall(IMitosisVaultVLF.settleVLFYield, (hubVLFVault, amount));
+    _toi(stub).expectOk(data);
+    return stub;
+  }
+
+  function assertSettleVLFLoss(address stub, address hubVLFVault, uint256 amount)
+    internal
+    view
+    returns (address)
+  {
+    bytes memory data = abi.encodeCall(IMitosisVaultVLF.settleVLFLoss, (hubVLFVault, amount));
+    _toi(stub).expectOk(data);
+    return stub;
+  }
+
+  function assertSettleVLFExtraRewards(
     address stub,
-    address asset,
-    address to,
-    address hubEOLVault,
+    address hubVLFVault,
+    address reward,
     uint256 amount
   ) internal view returns (address) {
     bytes memory data =
-      abi.encodeCall(IMitosisVaultEOL.depositWithSupplyEOL, (asset, to, hubEOLVault, amount));
+      abi.encodeCall(IMitosisVaultVLF.settleVLFExtraRewards, (hubVLFVault, reward, amount));
     _toi(stub).expectOk(data);
     return stub;
   }
 
-  // Add more assert... functions for other mutative methods as needed
+  function assertSetVLFStrategyExecutor(address stub, address hubVLFVault, address executor)
+    internal
+    view
+    returns (address)
+  {
+    bytes memory data =
+      abi.encodeCall(IMitosisVaultVLF.setVLFStrategyExecutor, (hubVLFVault, executor));
+    _toi(stub).expectOk(data);
+    return stub;
+  }
 }

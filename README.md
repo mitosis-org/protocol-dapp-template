@@ -1,6 +1,6 @@
 # Protocol DApp Template
 
-Project template for building a dapp that interacts with the Mitosis protocol. This template has pre-installed dependencies for the Mitosis protocol like `@mito-mainnet/` and `@stub/`.
+Project template for building a dapp that interacts with the Mitosis protocol. This template has pre-installed dependencies for the Mitosis protocol like `mitosis/` and `@stub/`.
 
 ## 📦 Installation
 
@@ -99,7 +99,7 @@ Key settings in `foundry.toml`:
 | `@openzeppelin/contracts`             | Security and utility contracts | `@oz/`                   |
 | `@openzeppelin/contracts-upgradeable` | Upgradeable contract support   | `@ozu/`                  |
 | `@hyperlane-xyz/core`                 | Cross-chain messaging          | `@hpl/`                  |
-| `@mitosis-org/protocol`               | Mitosis vault interfaces       | `@mito-mainnet/`         |
+| `@mitosis-org/protocol`               | Mitosis vault interfaces       | `mitosis/`               |
 | `@mitosis-org/stub`                   | Stub library for testing       | `@stub/`                 |
 | `solady`                              | Gas-optimized utilities        | `@solady/`               |
 | `forge-std`                           | Foundry standard library       | `@std/`                  |

@@ -7,7 +7,7 @@ import { IERC2612 } from '@oz/interfaces/IERC2612.sol';
 import { SafeERC20 } from '@oz/token/ERC20/utils/SafeERC20.sol';
 import { Address } from '@oz/utils/Address.sol';
 
-import { IMitosisVault } from '@mito-mainnet/interfaces/branch/IMitosisVault.sol';
+import { IMitosisVault } from '@mitosis/interfaces/branch/IMitosisVault.sol';
 
 contract Depositor is Ownable {
   using SafeERC20 for IERC20Metadata;

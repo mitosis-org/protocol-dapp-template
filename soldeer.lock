@@ -20,10 +20,11 @@ checksum = "55f341818321b3f925161a72fd0dcd62e4a0a4b66785a7a932bf2bfaf96fb9d1"
 integrity = "e9ecdc364d152157431e5df5aa041ffddbe9bb1c1ad81634b1e72df9e23814e8"
 
 [[dependencies]]
-name = "mito-mainnet"
-version = "0.2.0-alpha"
-git = "https://github.com/mitosis-org/protocol"
-rev = "4ef58242c0e0bcb8714714db019e402ccdd93272"
+name = "mitosis"
+version = "1.0.0"
+url = "https://soldeer-revisions.s3.amazonaws.com/mitosis/1_0_0_20-08-2025_17:47:36_src.zip"
+checksum = "25d328933ca3c5bc4169cf9c06b0b6d0d6e895e1212932d206dfa6843b58dd81"
+integrity = "1705455929153139b3aa444d373a40bb8e7e56ae19327b3144cdd47c4fba0946"
 
 [[dependencies]]
 name = "solady"
@@ -34,6 +35,7 @@ integrity = "f0a129ed5ebac740e2121d30b707634bd688d5fa37f7b548495630d040584b73"
 
 [[dependencies]]
 name = "stub"
-version = "0.1.0"
-git = "https://github.com/mitosis-org/stub"
-rev = "e572214c94bb2d2c38d02e4fa6a40eeac45d4673"
+version = "0.0.1"
+url = "https://soldeer-revisions.s3.amazonaws.com/stub/0_0_1_21-08-2025_12:01:43_src.zip"
+checksum = "8ba6c0c6421d0c9a6e06dfaa1aed738eb9cc4d898dcf54a87168658af9aad314"
+integrity = "cf5deb6e7b7bbc2c25048b33cebb31ac206d1ee99904777d22cabe67225e65a7"
